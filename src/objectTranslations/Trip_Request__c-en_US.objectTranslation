@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Trip Request</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Trip Requests</value>
+    </caseValues>
+    <fields>
+        <label><!-- Airfare Cost --></label>
+        <name>Airfare_Cost__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Facing --></label>
+        <name>Customer_Facing__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Expected Total Cost --></label>
+        <name>Expected_Total_Cost__c</name>
+    </fields>
+    <fields>
+        <label><!-- Location --></label>
+        <name>Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- Opportunity --></label>
+        <name>Opportunity__c</name>
+        <relationshipLabel><!-- Trip Requests --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Submit for Approval --></label>
+        <name>Submit_for_Approval__c</name>
+    </fields>
+    <fields>
+        <label><!-- Trip Description --></label>
+        <name>Trip_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Trip End --></label>
+        <name>Trip_End__c</name>
+    </fields>
+    <fields>
+        <label><!-- Trip Start --></label>
+        <name>Trip_Start__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>
