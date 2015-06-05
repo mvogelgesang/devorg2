@@ -18,7 +18,7 @@
       <move file="${basedir}/${sfdc.retrieveTarget}" tofile="src"/>
     </target>
  
-    <target name="deployCode" depends="delete_social_post_files, remove_profile_references,remove_social_persona_from_profiles">
+    <target name="deployCode" depends="delete_social_post_files, remove_profile_references,remove_social_persona_from_profiles,delete_unused_workflows">
       <echo level="info">Performing the deploy</echo>
       <sf:deploy
         username="${sfdc.username}"
@@ -29,7 +29,7 @@
         maxPoll="${sfdc.maxPoll}"/>
     </target>
  
-    <target name="deployEmptyCheckOnly" depends="delete_social_post_files,remove_profile_references,remove_social_persona_from_profiles">
+    <target name="deployEmptyCheckOnly" depends="delete_social_post_files,remove_profile_references,remove_social_persona_from_profiles,delete_unused_workflows">
       <echo level="info">Testing the deploy</echo>
       <sf:deploy
           checkOnly="true"
@@ -87,7 +87,9 @@
     </target>
 
     <target name="delete_unused_workflows" >
+      <echo message="deleting Question.workflow from ${basedir}/src/workflows..." />
       <delete file="${basedir}/src/workflows/Question.workflow" />
+      <echo message="deleting Reply.workflow from ${basedir}/src/workflows..." />
       <delete file="${basedir}/src/workflows/Reply.workflow" />
     </target>
 </project>
