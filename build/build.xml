@@ -68,7 +68,7 @@
         <replaceregexp match="^    &lt;layoutAssignments&gt;\n        &lt;layout&gt;SocialPersona-Social Persona Layout&lt;/layout&gt;\n    &lt;/layoutAssignments&gt;$" replace="" flags="gm" byline="false">
             <fileset dir="${basedir}/src/profiles" includes="**/*.profile" />
         </replaceregexp>
-        <replaceregexp match="^    &lt;tabVisibilities&gt;\n        &lt;tab&gt;standard-SocialPersona&lt;/tab&gt;\n    &lt;/visibility&gt;\n    &lt;/visibility&gt;    &lt;/tabVisibilities&gt;$" replace="" flags="gm" byline="false">
+        <replaceregexp match="^    &lt;tabVisibilities&gt;\n        &lt;tab&gt;standard-SocialPersona&lt;/tab&gt;\n        &lt;visibility&gt;DefaultOff&lt;/visibility&gt;\n    &lt;/tabVisibilities&gt;$" replace="" flags="gm" byline="false">
             <fileset dir="${basedir}/src/profiles" includes="**/*.profile" />
         </replaceregexp>
     </target>
