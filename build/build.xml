@@ -65,11 +65,11 @@
  
     <target name="remove_profile_references">
         <replaceregexp match="^  &lt;layoutAssignments&gt;\n &lt;layout&gt;FeedItem-Feed Item Layout&lt;/layout&gt;\n &lt;/layoutAssignments&gt;$" replace="" flags="gm" byline="false">
-            <fileset dir="${metadata.root}\profiles" includes="**/*.profile" /> 
+            <fileset dir="${basedir}/src/profiles" includes="**/*.profile" /> 
         </replaceregexp>
     </target>
 
     <target name="delete_FeedItem_layout" depends="remove_profile_references">
-      <delete file="${metadata.root}\layouts\FeedItem-Feed Item Layout.layout"/>
+      <delete file="${basedir}/src/layouts/FeedItem-Feed Item Layout.layout"/>
     </target>
 </project>
