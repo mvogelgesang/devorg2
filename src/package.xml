@@ -129,7 +129,6 @@
     <types>
         <members>Package_Emails</members>
         <members>Package_Emails/NOTIFICATION_Email_notification</members>
-        <members>unfiled$public</members>
         <members>unfiled$public/MarketingProductInquiryResponse</members>
         <members>unfiled$public/SUPPORTSelfServiceNewCommentNotificationSAMPLE</members>
         <members>unfiled$public/SUPPORTSelfServiceNewUserLoginInformationSAMPLE</members>
@@ -204,7 +203,6 @@
     <types>
         <members>Tutorial_Reports</members>
         <members>Tutorial_Reports/Opportunity_Pipeline_Report</members>
-        <members>unfiled$public</members>
         <members>unfiled$public/TrialForce_Repot</members>
         <name>Report</name>
     </types>
