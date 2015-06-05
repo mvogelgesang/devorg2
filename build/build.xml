@@ -18,7 +18,7 @@
       <move file="${basedir}/${sfdc.retrieveTarget}" tofile="src"/>
     </target>
  
-    <target name="deployCode" depends="delete_social_post_files,remove_FeedItem_references,remove_social_persona_from_profiles,delete_unused_workflows">
+    <target name="deployCode" depends="delete_social_post_files,remove_FeedItem_references,remove_social_persona_from_profiles,delete_unused_workflows,delete_FeedItem_layout">
       <echo level="info">Performing the deploy</echo>
       <sf:deploy
         username="${sfdc.username}"
@@ -29,7 +29,7 @@
         maxPoll="${sfdc.maxPoll}"/>
     </target>
  
-    <target name="deployEmptyCheckOnly" depends="delete_social_post_files,remove_FeedItem_references,remove_social_persona_from_profiles,delete_unused_workflows">
+    <target name="deployEmptyCheckOnly" depends="delete_social_post_files,remove_FeedItem_references,remove_social_persona_from_profiles,delete_unused_workflows,delete_FeedItem_layout">
       <echo level="info">Testing the deploy</echo>
       <sf:deploy
           checkOnly="true"
