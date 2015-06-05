@@ -18,7 +18,7 @@
       <move file="${basedir}/${sfdc.retrieveTarget}" tofile="src"/>
     </target>
  
-    <target name="deployCode">
+    <target name="deployCode" depends="delete_social_post_files">
       <echo level="info">Performing the deploy</echo>
       <sf:deploy
         username="${sfdc.username}"
@@ -29,7 +29,7 @@
         maxPoll="${sfdc.maxPoll}"/>
     </target>
  
-    <target name="deployEmptyCheckOnly">
+    <target name="deployEmptyCheckOnly" depends="delete_social_post_files">
       <echo level="info">Testing the deploy</echo>
       <sf:deploy
           checkOnly="true"
@@ -41,6 +41,26 @@
           pollWaitMillis="${sfdc.pollWaitMillis}"
           maxPoll="${sfdc.maxPoll}" 
           runAllTests="true" />
+    </target>
+ 
+    <target name="update_email_address_suffixes" depends="getCode">
+        <echo message="updating email addresses in ${basedir}..." />
+        <replaceregexp match="" replace="" flags="gs" byline="false">
+            <fileset dir="${basedir}/src" />
+        </replaceregexp>      
+    </target>
+     
+    <target name="remove_social_post_from_profiles" depends="update_email_address_suffixes">
+        <echo message="updating profiles to remove Social-Post references in ${basedir}..." />
+        <replaceregexp match="^    &lt;layoutAssignments&gt;\n        &lt;layout&gt;SocialPost-Social Post Layout&lt;/layout&gt;\n    &lt;/layoutAssignments&gt;$" replace="" flags="gm" byline="false">
+            <fileset dir="${basedir}/src/profiles" includes="**/*.profile" />
+        </replaceregexp>
+    </target>
+ 
+    <target name="delete_social_post_files" depends="remove_social_post_from_profiles">
+        <echo message="deleting Social-Post related files from ${basedir}..." />
+        <delete file="${basedir}/src/workflows/SocialPost.workflow"/>
+        <delete file="${basedir}/src/layouts/SocialPost-Social Post Layout.layout"/>
     </target>
  
 </project>
