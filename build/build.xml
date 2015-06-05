@@ -18,7 +18,7 @@
       <move file="${basedir}/${sfdc.retrieveTarget}" tofile="src"/>
     </target>
  
-    <target name="deployCode" depends="delete_social_post_files">
+    <target name="deployCode" depends="delete_social_post_files, remove_profile_references">
       <echo level="info">Performing the deploy</echo>
       <sf:deploy
         username="${sfdc.username}"
@@ -29,7 +29,7 @@
         maxPoll="${sfdc.maxPoll}"/>
     </target>
  
-    <target name="deployEmptyCheckOnly" depends="delete_social_post_files">
+    <target name="deployEmptyCheckOnly" depends="delete_social_post_files, remove_profile_references">
       <echo level="info">Testing the deploy</echo>
       <sf:deploy
           checkOnly="true"
@@ -63,4 +63,13 @@
         <delete file="${basedir}/src/layouts/SocialPost-Social Post Layout.layout"/>
     </target>
  
+    <target name="remove_profile_references">
+        <replaceregexp match="^  &lt;layoutAssignments&gt;\n &lt;layout&gt;FeedItem-Feed Item Layout&lt;/layout&gt;\n &lt;/layoutAssignments&gt;$" replace="" flags="gm" byline="false">
+            <fileset dir="${metadata.root}\profiles" includes="**/*.profile" /> 
+        </replaceregexp>
+    </target>
+
+    <target name="delete_FeedItem_layout" depends="remove_profile_references">
+      <delete file="${metadata.root}\layouts\FeedItem-Feed Item Layout.layout"/>
+    </target>
 </project>
