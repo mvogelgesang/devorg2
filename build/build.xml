@@ -29,7 +29,7 @@
         maxPoll="${sfdc.maxPoll}"/>
     </target>
  
-    <target name="deployEmptyCheckOnly" depends="delete_social_post_files, remove_profile_references">
+    <target name="deployEmptyCheckOnly" depends="delete_social_post_files,remove_profile_references">
       <echo level="info">Testing the deploy</echo>
       <sf:deploy
           checkOnly="true"
