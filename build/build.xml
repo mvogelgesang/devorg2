@@ -18,7 +18,7 @@
       <move file="${basedir}/${sfdc.retrieveTarget}" tofile="src"/>
     </target>
  
-    <target name="deployCode" depends="delete_social_post_files, remove_profile_references">
+    <target name="deployCode" depends="delete_social_post_files, remove_profile_references,remove_social_persona_from_profiles">
       <echo level="info">Performing the deploy</echo>
       <sf:deploy
         username="${sfdc.username}"
@@ -61,6 +61,19 @@
         <echo message="deleting Social-Post related files from ${basedir}..." />
         <delete file="${basedir}/src/workflows/SocialPost.workflow"/>
         <delete file="${basedir}/src/layouts/SocialPost-Social Post Layout.layout"/>
+    </target>
+
+    <target name="remove_social_persona_from_profiles">
+        <echo message="updating profiles to remove Social-Persona references in ${basedir}..." />
+        <replaceregexp match="^    &lt;layoutAssignments&gt;\n        &lt;layout&gt;SocialPersona-Social Persona Layout&lt;/layout&gt;\n    &lt;/layoutAssignments&gt;$" replace="" flags="gm" byline="false">
+            <fileset dir="${basedir}/src/profiles" includes="**/*.profile" />
+        </replaceregexp>
+    </target>
+ 
+    <target name="delete_social_persona_files" depends="remove_social_persona_from_profiles">
+        <echo message="deleting Social-Persona related files from ${basedir}..." />
+        <delete file="${basedir}/src/workflows/SocialPersona.workflow"/>
+        <delete file="${basedir}/src/layouts/SocialPersona-Social Persona Layout.layout"/>
     </target>
  
     <target name="remove_profile_references">
