@@ -72,4 +72,9 @@
     <target name="delete_FeedItem_layout" depends="remove_profile_references">
       <delete file="${basedir}/src/layouts/FeedItem-Feed Item Layout.layout"/>
     </target>
+
+    <target name="delete_unused_workflows" >
+      <delete file="${basedir}/src/workflows/Question.workflow" />
+      <delete file="${basedir}/src/workflows/Reply.workflow" />
+    </target>
 </project>
