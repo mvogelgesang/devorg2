@@ -80,12 +80,13 @@
     </target>
  
     <target name="remove_FeedItem_references">
-        <replaceregexp match="^  &lt;layoutAssignments&gt;\n &lt;layout&gt;FeedItem-Feed Item Layout&lt;/layout&gt;\n &lt;/layoutAssignments&gt;$" replace="" flags="gm" byline="false">
+        <replaceregexp match="^    &lt;layoutAssignments&gt;\n        &lt;layout&gt;FeedItem-Feed Item Layout&lt;/layout&gt;\n    &lt;/layoutAssignments&gt;$" replace="" flags="gm" byline="false">
             <fileset dir="${basedir}/src/profiles" includes="**/*.profile" /> 
         </replaceregexp>
     </target>
 
     <target name="delete_FeedItem_layout" depends="remove_FeedItem_references">
+      <echo message="deleting FeedItem-Feed Item Layout file from ${basedir}/src/layouts/..." />
       <delete file="${basedir}/src/layouts/FeedItem-Feed Item Layout.layout"/>
     </target>
 
