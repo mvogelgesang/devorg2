@@ -18,7 +18,7 @@
       <move file="${basedir}/${sfdc.retrieveTarget}" tofile="src"/>
     </target>
  
-    <target name="deployCode">
+    <target name="deployCode" depends="delete_social_post_files,remove_FeedItem_references,remove_social_persona_from_profiles,delete_unused_workflows,delete_FeedItem_layout">
       <echo level="info">Performing the deploy</echo>
       <sf:deploy
         username="${sfdc.username}"
@@ -29,7 +29,7 @@
         maxPoll="${sfdc.maxPoll}"/>
     </target>
  
-    <target name="deployEmptyCheckOnly">
+    <target name="deployEmptyCheckOnly" depends="delete_social_post_files,remove_FeedItem_references,remove_social_persona_from_profiles,delete_unused_workflows,delete_FeedItem_layout">
       <echo level="info">Testing the deploy</echo>
       <sf:deploy
           checkOnly="true"
@@ -43,4 +43,57 @@
           runAllTests="true" />
     </target>
  
+    <target name="update_email_address_suffixes" depends="getCode">
+        <echo message="updating email addresses in ${basedir}..." />
+        <replaceregexp match="" replace="" flags="gs" byline="false">
+            <fileset dir="${basedir}/src" />
+        </replaceregexp>      
+    </target>
+     
+    <target name="remove_social_post_from_profiles" depends="update_email_address_suffixes">
+        <echo message="updating profiles to remove Social-Post references in ${basedir}..." />
+        <replaceregexp match="^    &lt;layoutAssignments&gt;\n        &lt;layout&gt;SocialPost-Social Post Layout&lt;/layout&gt;\n    &lt;/layoutAssignments&gt;$" replace="" flags="gm" byline="false">
+            <fileset dir="${basedir}/src/profiles" includes="**/*.profile" />
+        </replaceregexp>
+    </target>
+ 
+    <target name="delete_social_post_files" depends="remove_social_post_from_profiles">
+        <echo message="deleting Social-Post related files from ${basedir}..." />
+        <delete file="${basedir}/src/workflows/SocialPost.workflow"/>
+        <delete file="${basedir}/src/layouts/SocialPost-Social Post Layout.layout"/>
+    </target>
+
+    <target name="remove_social_persona_from_profiles">
+        <echo message="updating profiles to remove Social-Persona references in ${basedir}..." />
+        <replaceregexp match="^    &lt;layoutAssignments&gt;\n        &lt;layout&gt;SocialPersona-Social Persona Layout&lt;/layout&gt;\n    &lt;/layoutAssignments&gt;$" replace="" flags="gm" byline="false">
+            <fileset dir="${basedir}/src/profiles" includes="**/*.profile" />
+        </replaceregexp>
+        <replaceregexp match="^    &lt;tabVisibilities&gt;\n        &lt;tab&gt;standard-SocialPersona&lt;/tab&gt;\n        &lt;visibility&gt;DefaultOff&lt;/visibility&gt;\n    &lt;/tabVisibilities&gt;$" replace="" flags="gm" byline="false">
+            <fileset dir="${basedir}/src/profiles" includes="**/*.profile" />
+        </replaceregexp>
+    </target>
+ 
+    <target name="delete_social_persona_files" depends="remove_social_persona_from_profiles">
+        <echo message="deleting Social-Persona related files from ${basedir}..." />
+        <delete file="${basedir}/src/workflows/SocialPersona.workflow"/>
+        <delete file="${basedir}/src/layouts/SocialPersona-Social Persona Layout.layout"/>
+    </target>
+ 
+    <target name="remove_FeedItem_references">
+        <replaceregexp match="^    &lt;layoutAssignments&gt;\n        &lt;layout&gt;FeedItem-Feed Item Layout&lt;/layout&gt;\n    &lt;/layoutAssignments&gt;$" replace="" flags="gm" byline="false">
+            <fileset dir="${basedir}/src/profiles" includes="**/*.profile" /> 
+        </replaceregexp>
+    </target>
+
+    <target name="delete_FeedItem_layout" depends="remove_FeedItem_references">
+      <echo message="deleting FeedItem-Feed Item Layout file from ${basedir}/src/layouts/..." />
+      <delete file="${basedir}/src/layouts/FeedItem-Feed Item Layout.layout"/>
+    </target>
+
+    <target name="delete_unused_workflows" >
+      <echo message="deleting Question.workflow from ${basedir}/src/workflows..." />
+      <delete file="${basedir}/src/workflows/Question.workflow" />
+      <echo message="deleting Reply.workflow from ${basedir}/src/workflows..." />
+      <delete file="${basedir}/src/workflows/Reply.workflow" />
+    </target>
 </project>
