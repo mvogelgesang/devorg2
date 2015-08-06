@@ -10,11 +10,11 @@
     </applicationVisibilities>
     <applicationVisibilities>
         <application>standard__Chatter</application>
-        <visible>false</visible>
+        <visible>true</visible>
     </applicationVisibilities>
     <applicationVisibilities>
         <application>standard__Community</application>
-        <visible>false</visible>
+        <visible>true</visible>
     </applicationVisibilities>
     <applicationVisibilities>
         <application>standard__Content</application>
@@ -76,9 +76,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.Active__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1281,7 +1281,7 @@
     </recordTypeVisibilities>
     <tabSettings>
         <tab>Quickstart</tab>
-        <visibility>None</visibility>
+        <visibility>true</visibility>
     </tabSettings>
     <tabSettings>
         <tab>Trip_Request__c</tab>
