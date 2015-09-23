@@ -17,8 +17,12 @@
                 <field>Product2Id</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>ProductCode</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ProductBinNumber</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
