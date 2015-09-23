@@ -36,7 +36,7 @@ Once the tab has been created, it can be added to the default display.
 - Save
 
 ## Images
-![Bicycle](/img/bike.jpg "Optional title")
+![Bicycle](img/bike.jpg "Optional title")
 
 ## Tables
 |header1|header2|header3|header4|header5|
